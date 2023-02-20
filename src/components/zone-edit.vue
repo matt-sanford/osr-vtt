@@ -1,5 +1,5 @@
 <template>
-  <Button v-bind="$attrs" class="p-button-rounded p-button-outlined" icon="pi pi-pencil" @click="visible = !visible"/>
+  <Button v-bind="$attrs" class="p-button-rounded p-button-text" icon="pi pi-pencil" @click="visible = !visible"/>
   <Dialog class="w-1/3" v-model:visible="visible" modal dismissableMask maximizable>
     <template #header>
 		  <h3>Edit "{{ zone.title }}"</h3>
@@ -23,14 +23,11 @@
       <div class="preview" :style="data.splash ? `background-image: url(${data.splash})` : ''"></div>
     </div>
 
+    <Button label="Delete Zone" icon="pi pi-trash" class="p-button-danger" @click="remove"/>
+
     <template #footer>
-      <div class="footer">
-        <Button label="Delete" icon="pi pi-trash" class="p-button-danger" @click="remove"/>
-        <div class="actions">
-          <Button label="Cancel" icon="pi pi-times" class="p-button-text" @click="visible = false"/>
-          <Button label="Save" icon="pi pi-check" @click="save"/>
-        </div>
-      </div>
+      <Button label="Cancel" icon="pi pi-times" class="p-button-text" @click="visible = false"/>
+      <Button label="Save" icon="pi pi-check" @click="save"/>
     </template>
   </Dialog>
 </template>
