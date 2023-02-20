@@ -10,6 +10,16 @@
       <Text id="title" type="text" v-model="data.title" autofocus/>
     </div>
 
+    <div class="field">
+      <label for="title">Zone splash</label>
+      <Text id="title" type="text" v-model="data.splash"/>
+    </div>
+
+    <div class="field">
+      <label>Preview</label>
+      <div class="preview" :style="data.splash ? `background-image: url(${data.splash})` : ''"></div>
+    </div>
+
     <template #footer>
       <Button label="Cancel" icon="pi pi-times" class="p-button-text" @click="visible = false"/>
       <Button label="Save" icon="pi pi-check" @click="save"/>
@@ -29,19 +39,22 @@
   const zoneState = useZonesState();
   const zone = ref(zoneState.getZone({id: zoneID})); 
   const data = reactive({
-    title: zone.title
+    title: zone.value.title,
+    splash: zone.value.splash
   });
 
   watch(visible, (isTrue) => {
     if (isTrue) {
       zone.value = zoneState.getZone({id: zoneID}); 
       data.title = zone.value.title;
+      data.splash = zone.value.splash;
     }
   })
 
   function save() {
     zone.value = zoneState.getZone({id: zoneID}); 
     zone.value.title = data.title;
+    zone.value.splash = data.splash;
     visible.value = false;
   }
 </script>
@@ -49,9 +62,14 @@
 <style lang="postcss" scoped>
 .field {
   @apply flex flex-col;
+  @apply my-2;
+}
 
-  label {
-    @apply p-2;
-  }
+.preview {
+  outline: 1px dotted azure;
+  outline-offset: 2px;
+  @apply w-96 h-24 my-4;
+  @apply bg-center bg-cover;
+  @apply rounded-lg;
 }
 </style>

@@ -8,7 +8,7 @@
           @mouseover="show.edit = true"
           @mouseleave="show.edit = false"
         >
-          <zone-edit ref="edit" :class="show.edit ? 'opacity-100' : 'opacity-25'"/>
+          <zone-edit ref="edit" :class="show.edit ? 'opacity-100' : 'opacity-0'"/>
         </header>
       </template>
       <template #title>
@@ -18,7 +18,7 @@
           @mouseover="show.handle = true"
           @mouseleave="show.handle = false"
         >
-          {{ zone.title }} <Icon icon="pi-bars" :class="show.handle ? 'opacity-100' : 'opacity-10'"/>
+          {{ zone.title }} <Icon icon="pi-bars" :class="show.handle ? 'opacity-100' : 'opacity-0'"/>
         </div>
       </template>
       <template #content>
@@ -69,6 +69,7 @@ const showProducts = () => {}
   .panel {
     @apply w-96;
     .header {
+      
       @apply flex items-start justify-end;
       @apply p-1 h-24;
       @apply bg-center bg-cover;
@@ -76,6 +77,7 @@ const showProducts = () => {}
     }
     .handle {
       @apply flex items-baseline justify-between;
+      @apply select-none;
       @apply cursor-move;
     }
   }
