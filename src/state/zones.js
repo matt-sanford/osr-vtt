@@ -28,7 +28,10 @@ export const useZonesState = defineStore('zones', {
   }),
   actions: {
     addZone(data) {
-      this.zones.push(new ZoneModel(data));
+      this.all.push(new ZoneModel(data));
+    },
+    getZone(data) {
+      return this.all.find(zone => zone.id === data.id);
     }
   },
 });

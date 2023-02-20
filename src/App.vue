@@ -11,5 +11,4 @@ import {useZonesState} from './state/zones';
 import Zone from './components/zone.vue';
 
 const zones = useZonesState();
-console.log(zones.all)
 </script>

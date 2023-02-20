@@ -1,0 +1,3 @@
+<template>
+  zone content
+</template>
