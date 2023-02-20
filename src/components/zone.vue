@@ -11,6 +11,7 @@
         >
           <zone-edit :class="show.edit ? 'opacity-100' : 'opacity-0'"/>
         </header>
+        <div class="seperator"/>
       </template>
       <template #title>
         <div
@@ -30,6 +31,7 @@
 </template>
 
 <script setup>
+import ColorHash from 'color-hash';
 import { ref, reactive, defineProps, watch, provide } from 'vue';
 import { useDraggable } from '@vueuse/core';
 import Card from 'primevue/card';
@@ -55,8 +57,7 @@ const { style } = useDraggable(panel, {
   initialValue: { x: props.zone.x, y: props.zone.y },
   handle
 });
-
-console.log(props.zone);
+const colorHash = new ColorHash();
 
 watch(style, (newValue) => {
   const [x, y] = newValue.split(';').filter(v => v).map(item => item.split(':')[1].replace('px', ''))
@@ -67,17 +68,22 @@ watch(style, (newValue) => {
 
 <style lang="postcss" scoped>
   .panel {
-    @apply w-96;
+    @apply w-1/3;
     .header {
       @apply flex items-start justify-end;
       @apply p-1;
       @apply bg-center bg-cover;
       @apply rounded-t-lg;
-      background-color: grey;
+      background-color: v-bind(colorHash.hex(zone.title));
+      opacity: 0.6;
 
       & > button {
         @apply mx-2;
       }
+    }
+    .seperator {
+      height: 2px;
+      background-color: v-bind(colorHash.hex(zone.title));
     }
     .handle {
       @apply flex items-baseline justify-between;

@@ -36,7 +36,6 @@
   import {ref, inject, reactive, watch} from 'vue';
   import Button from 'primevue/button';
   import Dialog from 'primevue/dialog';
-  import Divider from 'primevue/divider';
   import Text from 'primevue/inputtext';
   import {useZonesState} from '../state/zones';
 

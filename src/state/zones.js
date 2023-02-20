@@ -21,8 +21,7 @@ export const useZonesState = defineStore('zones', {
   state: () => ({
     all: useStorage('all-zones', [
       new ZoneModel({
-        title: 'Underdark entrance',
-        splash: 'https://images.unsplash.com/photo-1575683990472-562331e63ae6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2574&q=80'
+        title: 'New zone',
       })
     ])
   }),
