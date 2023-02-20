@@ -1,12 +1,15 @@
 <template>
-<Panel>
-    <template #header>
-        Hello World
-    </template>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-</Panel>
+  <zone
+    v-for="zone in zones.all"
+    :key="zone.id"
+    :zone="zone"
+  />
 </template>
 
 <script setup>
-import Panel from 'primevue/panel';
+import {useZonesState} from './state/zones';
+import Zone from './components/zone.vue';
+
+const zones = useZonesState();
+console.log(zones.all)
 </script>

@@ -9,13 +9,19 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@vueuse/core": "^9.13.0",
     "pinia": "^2.0.30",
     "primeicons": "^6.0.1",
     "primevue": "^3",
+    "uuid": "^9.0.0",
     "vue": "^3.2.45"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.0.0",
+    "autoprefixer": "^10.4.13",
+    "postcss": "^8.4.21",
+    "postcss-nesting": "^11.2.1",
+    "tailwindcss": "^3.2.7",
     "vite": "^4.1.0"
   }
 }
