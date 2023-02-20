@@ -30,6 +30,9 @@ export const useZonesState = defineStore('zones', {
     addZone(data) {
       this.all.push(new ZoneModel(data));
     },
+    removeZone(data) {
+      this.all = this.all.filter(zone => zone.id !== data.id);
+    },
     getZone(data) {
       return this.all.find(zone => zone.id === data.id);
     }

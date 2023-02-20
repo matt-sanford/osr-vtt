@@ -1,14 +1,15 @@
 <template>
   <div class="panel" ref="panel" :style="style" style="position: fixed">
     <Card>
-      <template #header v-if="zone.splash">
+      <template #header>
         <header
           class="header"
+          :class="zone.splash ? 'h-24' : 'h-11'"
           :style="`background-image: url(${zone.splash})`"
           @mouseover="show.edit = true"
           @mouseleave="show.edit = false"
         >
-          <zone-edit ref="edit" :class="show.edit ? 'opacity-100' : 'opacity-0'"/>
+          <zone-edit :class="show.edit ? 'opacity-100' : 'opacity-0'"/>
         </header>
       </template>
       <template #title>
@@ -46,7 +47,6 @@ provide('zoneID', props.zone.id);
 
 const panel = ref();
 const handle = ref();
-const edit = ref();
 const show = reactive({
   handle: false,
   edit: false,
@@ -56,24 +56,28 @@ const { style } = useDraggable(panel, {
   handle
 });
 
+console.log(props.zone);
+
 watch(style, (newValue) => {
   const [x, y] = newValue.split(';').filter(v => v).map(item => item.split(':')[1].replace('px', ''))
   props.zone.x = x;
   props.zone.y = y;
 });
-
-const showProducts = () => {}
 </script>
 
 <style lang="postcss" scoped>
   .panel {
     @apply w-96;
     .header {
-      
       @apply flex items-start justify-end;
-      @apply p-1 h-24;
+      @apply p-1;
       @apply bg-center bg-cover;
       @apply rounded-t-lg;
+      background-color: grey;
+
+      & > button {
+        @apply mx-2;
+      }
     }
     .handle {
       @apply flex items-baseline justify-between;

@@ -12,7 +12,10 @@
 
     <div class="field">
       <label for="title">Zone splash</label>
-      <Text id="title" type="text" v-model="data.splash"/>
+      <div class="p-inputgroup">
+        <Text id="title" type="text" v-model="data.splash"/>
+        <Button icon="pi pi-delete-left" class="p-button-danger" @click="data.splash = null"/>
+      </div>
     </div>
 
     <div class="field">
@@ -21,8 +24,13 @@
     </div>
 
     <template #footer>
-      <Button label="Cancel" icon="pi pi-times" class="p-button-text" @click="visible = false"/>
-      <Button label="Save" icon="pi pi-check" @click="save"/>
+      <div class="footer">
+        <Button label="Delete" icon="pi pi-trash" class="p-button-danger" @click="remove"/>
+        <div class="actions">
+          <Button label="Cancel" icon="pi pi-times" class="p-button-text" @click="visible = false"/>
+          <Button label="Save" icon="pi pi-check" @click="save"/>
+        </div>
+      </div>
     </template>
   </Dialog>
 </template>
@@ -31,6 +39,7 @@
   import {ref, inject, reactive, watch} from 'vue';
   import Button from 'primevue/button';
   import Dialog from 'primevue/dialog';
+  import Divider from 'primevue/divider';
   import Text from 'primevue/inputtext';
   import {useZonesState} from '../state/zones';
 
@@ -57,6 +66,12 @@
     zone.value.splash = data.splash;
     visible.value = false;
   }
+
+  function remove() {
+    zone.value = zoneState.getZone({id: zoneID}); 
+    zoneState.removeZone(zone.value);
+    visible.value = false;
+  }
 </script>
 
 <style lang="postcss" scoped>
@@ -68,8 +83,13 @@
 .preview {
   outline: 1px dotted azure;
   outline-offset: 2px;
+  margin: 0 auto;
   @apply w-96 h-24 my-4;
   @apply bg-center bg-cover;
   @apply rounded-lg;
+}
+
+.footer {
+  @apply flex items-center justify-between;
 }
 </style>
