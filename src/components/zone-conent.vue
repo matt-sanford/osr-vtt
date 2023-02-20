@@ -28,7 +28,7 @@ import SplitterPanel from 'primevue/splitterpanel';
   margin-bottom: -22px;
   .splitter-panel {
     @apply h-24;
-    @apply flex items-center justify-center;
+    @apply flex items-center justify-center flex-col;
   }
 }
 </style>

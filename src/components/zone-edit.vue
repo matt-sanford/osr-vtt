@@ -1,5 +1,5 @@
 <template>
-  <Button v-bind="$attrs" class="p-button-rounded p-button-text" icon="pi pi-pencil" @click="visible = !visible"/>
+  <Button v-bind="$attrs" class="p-button-rounded p-button-info" icon="pi pi-pencil" @click="visible = !visible"/>
   <Dialog class="w-1/3" v-model:visible="visible" modal dismissableMask maximizable>
     <template #header>
 		  <h3>Edit "{{ zone.title }}"</h3>
